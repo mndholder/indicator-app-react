@@ -1,0 +1,75 @@
+.Indicator {
+    --arrow-width: 3px;
+    --arrow-margin: 15px;
+    --scale-width: 15px;
+    --min-angle: -45deg;
+    --max-angle: 225deg;
+    --arrow-rotation: 0deg;
+}
+
+.Indicator {
+    position: relative;
+    border-radius: 100%;
+    border: black 1px solid;
+    width: 100px;
+    height: 100px;
+    z-index: 10;
+}
+
+.Indicator:before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: var(--arrow-width);
+    width: calc(50% + var(--scale-width));
+    top: calc(50% - calc(var(--arrow-width) / 2));
+    background-color: black;
+    transform-origin: calc(100% - var(--scale-width)) 50%;
+    transform: rotate(var(--min-angle)) translate(calc(var(--scale-width) * -1));
+    z-index: 0;
+}
+
+.Indicator:after {
+    content: "";
+    display: block;
+    position: absolute;
+    height: var(--arrow-width);
+    width: calc(50% + var(--scale-width));
+    top: calc(50% - calc(var(--arrow-width) / 2));
+    background-color: black;
+    transform-origin: calc(100% - var(--scale-width)) 50%;
+    transform: rotate(var(--max-angle)) translate(calc(var(--scale-width) * -1));
+    z-index: 0;
+}
+
+.Indicator__Scale {
+    background-color: white;
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    z-index: 1;
+}
+
+.Indicator__Scale:before {
+    content: "";
+    display: block;
+    position: absolute;
+    height: var(--arrow-width);
+    width: calc(50% - var(--arrow-margin));
+    top: calc(50% - calc(var(--arrow-width) / 2));
+    background-color: black;
+
+    transform-origin: calc(100% + var(--arrow-margin)) 50%;
+    transform: rotate(var(--arrow-rotation));
+    transition: transform 0.3s ease;
+}
+
+.Indicator__Value {
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    text-align: center;
+}
